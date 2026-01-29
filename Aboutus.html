@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Us | NurseryNextDoor</title>
+  <link rel="stylesheet" href="about.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #f4fff4;
+  color: #333;
+  line-height: 1.6;
+  
+}
+
+/* Header */
+.header {
+  background-color: #e1f5e1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  flex-wrap: wrap;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+.logo-text {
+  font-size: 24px;
+  color: green;
+}
+
+.nav a {
+  margin: 0 15px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: green;
+}
+
+/* About Section */
+.about-us {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  
+  gap:30px;
+  
+  background: #ffffff;
+}
+
+
+
+
+.about-content {
+  flex: 1;
+  max-width: 600px;
+  margin-left:10px;
+  text-align: justify;
+}
+
+.about-content h2 {
+  font-size: 36px;
+  color: green;
+  margin-bottom: 20px;
+}
+
+.about-content p {
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+
+.about-signature {
+  font-style: italic;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.about-image {
+  flex: 1;
+  max-width: 800px;
+  display: flex;
+  flex-direction: row;
+  margin-top:50px;
+}
+
+.about-image img {
+  width: 300px;
+  height: 300px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin:20px;
+}
+
+/* Footer */
+.footer {
+  background-color:white;
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #555;
+  margin-top: 280px; 
+
+  margin-bottom: 1px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .header, .about-us {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .nav {
+    margin-top: 15px;
+  }
+
+  .about-image {
+    margin-top: 30px;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="header">
+    <div class="logo-section">
+      <img src="logo.jpeg" alt="NurseryNextDoor Logo" class="logo-img" />
+      <h1 class="logo-text">NurseryNextDoor</h1>
+    </div>
+    <nav class="nav">
+      <a href="main.html">Home</a>
+      <a href="Categories.html">Categories</a>
+      <a href="about.html" class="active">About Us</a>
+      <a href="faq.html">FAQs</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="about-us">
+    <div class="about-content">
+      <h2>About Us</h2>
+      <p>
+        At <strong style="color: #2e7d32;">NurseryNextDoor</strong>, we believe every home deserves a touch of green.
+        Our mission is to bring you closer to nature with a curated collection of low-light,
+        air-purifying, flowering, succulent, and hanging plants — perfect for homes, offices, and cozy spaces.
+      </p>
+      <p>
+        Whether you’re a seasoned plant parent or just beginning, our handpicked plants and 
+        care guidance ensure your greenery thrives beautifully.
+      </p>
+      <p>
+        We don’t just sell plants. We help you grow joy, peace, and a little green magic indoors.
+      </p>
+      <p class="about-signature">🌿 Let’s grow together – naturally!</p>
+    </div>
+    <div class="about-image">
+      <img src="images/indoor1.jpeg" alt="Indoor plants arrangement">
+       <img src="images/indoor2.jpeg" alt="Indoor plants arrangement">
+        <img src="images/indoor3.jpeg" alt="Indoor plants arrangement">
+    </div>
+  </section>
+
+  <footer class="footer">
+    <p>&copy; 2025 NurseryNextDoor. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

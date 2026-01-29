@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NurseryNextDoor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="favicon.png" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="main-header">
+    <div class="left-header">
+      <div class="logo-container">
+        <img class="logo-img" src="logo.jpeg" alt="NurseryNextDoor Logo" />
+        <div class="logo-text-social">
+          <div class="logo-text">NurseryNextDoor</div>
+          <div class="home__social">
+             <span class="home__social-follow">Follow Us:</span>
+             <a href="https://www.facebook.com/" target="_blank" class="home__social-link">
+             <i class="ri-facebook-fill"></i>
+             </a>
+             <a href="https://www.instagram.com/" target="_blank" class="home__social-link">
+             <i class="ri-instagram-line"></i>
+             </a>
+             <a href="https://twitter.com/" target="_blank" class="home__social-link">
+             <i class="ri-twitter-fill"></i>
+             </a>
+           </div>
+
+        </div>
+      </div>
+    </div>
+     
+     
+     <div class="search-container">
+  <input type="text" placeholder="Search Products..." class="search-bar">
+  <i class="fas fa-search" id="search-icon"></i>
+</div>
+
+   <a href="login.html" class="login-btn"><i class="fa-solid fa-user"></i></a></button>
+   
+  </header>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <a href="main.html">Home</a>
+      <a href="categories.html">Categories</a>
+      <a href="Aboutus.html">About-Us</a>
+      <a href="#faq">FAQ's</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+    <div class="nav-right">
+      <a href="wishlist.html"><i class="fas fa-heart"></i></a>
+      <a href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Welcome to <span>NurseryNextDoor</span></h1>
+      <p>Your one-stop shop for beautiful indoor plants. Discover the beauty of plants and let us help you find the perfect one for your home or office.</p>
+      <button class="explore">Explore</button>
+    </div>
+    <div class="hero-img">
+      <img src="intro.jpeg" alt="Plants Image" />
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE US SECTION -->
+<section class="why-choose-us" id="why-choose-us">
+  <div class="why-left">
+    <img src="why_choose_us.jpeg" alt="Plant Image" />
+  </div>
+  <div class="why-right">
+    <h2>Why Choose <span>NurseryNextDoor?</span></h2>
+    <p>We specialize in indoor and low-maintenance plants that fit every space and lifestyle. Whether you're a beginner or a plant parent, we've got the perfect green companion for you.</p>
+    <ul class="benefits">
+      <li><i class="fas fa-check-circle"></i> Expert-picked indoor plants for low-light homes.</li>
+      <li><i class="fas fa-check-circle"></i> Minimal care plants — perfect for busy schedules.</li>
+      <li><i class="fas fa-check-circle"></i> Eco-friendly packaging with doorstep delivery.</li>
+      <li><i class="fas fa-check-circle"></i> Free plant care guide with every purchase.</li>
+    </ul>
+    <a href="Categories.html" class="shop-now">Shop Now <i class="fas fa-arrow-right"></i></a>
+
+  </div>
+</section>
+
+<section class="faq-section" id="faq">
+  <h2>Most Asked Questions<br><span>On Plant Life</span></h2>
+
+  <div class="faq-container">
+    <div class="faq-item">
+      <button class="faq-question">My flowers are falling off or dying?</button>
+      <div class="faq-answer">This could be due to overwatering, lack of sunlight, or natural blooming cycle ending.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What causes leaves to become pale?</button>
+      <div class="faq-answer">Pale leaves usually indicate low nutrients or insufficient sunlight exposure.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">What causes brown crispy leaves?</button>
+      <div class="faq-answer">Dry air, over-fertilization, or underwatering are common reasons for this.</div>
+    </div>
+
+    <div class="faq-item active">
+      <button class="faq-question">How do I choose a plant?</button>
+      <div class="faq-answer">Choose based on light in your home, your watering habits, and your space size. Low-light and indoor plants are great for beginners.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">How do I change the pots?</button>
+      <div class="faq-answer">Gently remove the plant, loosen the roots, and place it in a slightly larger pot with fresh soil.</div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-question">Why are gnats flying around my plant?</button>
+      <div class="faq-answer">They are attracted to overwatered soil. Let the topsoil dry and consider using neem oil spray.</div>
+    </div>
+  </div>
+</section>
+  </section> <!-- end of FAQ section -->
+
+  <!-- Newsletter Component -->
+<section id="newsletter" aria-label="Newsletter signup" class="newsletter-component">
+  <div class="newsletter-inner">
+    <div class="text">
+      <h3>Join the Green Circle</h3>
+      <p>Get plant care tips, exclusive deals, and early access to new arrivals straight to your inbox.</p>
+    </div>
+    <form id="newsletter-form" class="form" novalidate>
+      <div class="input-wrapper">
+        <label for="newsletter-email" class="visually-hidden">Email address</label>
+        <input type="email" id="newsletter-email" placeholder="you@example.com" required aria-label="Email address">
+      </div>
+      <button type="submit" class="subscribe-btn">Subscribe</button>
+    </form>
+    <div id="newsletter-feedback" aria-live="polite" class="feedback"></div>
+  </div>
+</section>
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="footer-container">
+    
+    <!-- Logo & About -->
+    <div class="footer-section about">
+      <img src="logo.jpeg" alt="NurseryNextDoor Logo" class="footer-logo">
+      <p>At NurseryNextDoor, we bring nature closer to you with a curated selection of indoor, low-light, and air-purifying plants. Fresh, healthy, and delivered right to your doorstep.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://twitter.com/" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="footer-section links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="main.html">Home</a></li>
+        <li><a href="Categories.html">Categories</a></li>
+        <li><a href="Aboutus.html">About Us</a></li>
+        <li><a href="#faq">FAQ's</a></li>
+        <li><a href="#Contact">Contact Us</a></li>
+      </ul>
+    </div>
+
+    <!-- Customer Support -->
+    <div class="footer-section support">
+      <h4>Customer Support</h4>
+      <ul>
+        <li><a href="#">Shipping & Delivery</a></li>
+        <li><a href="#">Return Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+      </ul>
+    </div>
+
+    <!-- Contact Info -->
+    <div class="footer-section contact">
+      <h4>Contact Info</h4>
+      <p><i class="fas fa-map-marker-alt"></i> Pune, Maharashtra, India</p>
+      <p><i class="fas fa-phone-alt"></i> +91 95555 44444</p>
+      <p><i class="fas fa-envelope"></i> support@nurserynextdoor.com</p>
+    </div>
+
+  </div>
+
+  <!-- Bottom Bar -->
+  <div class="footer-bottom">
+    <p>&copy; 2025 NurseryNextDoor | All Rights Reserved</p>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+  
+</body>
+</html>
+
+
+
+
+

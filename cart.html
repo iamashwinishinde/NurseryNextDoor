@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cart - NurseryNextDoor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:#2e8b57;
+      --bg:#f4fdf4;
+      --radius:12px;
+      --shadow:0 12px 28px -10px rgba(46,139,87,0.25);
+      --transition:.25s cubic-bezier(.4,.2,.2,1);
+    }
+    *{box-sizing:border-box;}
+    body {
+      font-family:'Montserrat',sans-serif;
+      background: var(--bg);
+      margin:0;
+      padding:30px 20px;
+      color:#2f3e46;
+    }
+    h1 {
+      text-align:center;
+      color: var(--green);
+      margin-bottom:25px;
+      font-size:2rem;
+    }
+    .cart-wrapper {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .items {
+      flex: 1 1 600px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .cart-card {
+      display: flex;
+      gap: 15px;
+      background:#fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      padding:14px;
+      position: relative;
+      align-items:center;
+      flex-wrap: wrap;
+    }
+    .cart-card img {
+      width: 110px;
+      height: 110px;
+      object-fit: cover;
+      border-radius:10px;
+      flex-shrink:0;
+    }
+    .info {
+      flex:1;
+      min-width:160px;
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .plant-name {
+      font-weight:600;
+      font-size:1.1rem;
+    }
+    .price {
+      font-weight:700;
+      color: var(--green);
+    }
+    .qty-control {
+      display:flex;
+      align-items:center;
+      gap:6px;
+      margin-top:6px;
+    }
+    .qty-control button {
+      border:none;
+      background:#e1e8e3;
+      padding:6px 10px;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:14px;
+    }
+    .qty-control span {
+      min-width:32px;
+      text-align:center;
+      display:inline-block;
+      font-weight:600;
+    }
+    .remove-btn {
+      background:none;
+      border:none;
+      cursor:pointer;
+      font-size:18px;
+      color:#888;
+      position:absolute;
+      top:10px;
+      right:10px;
+    }
+    .subtotal {
+      font-size:0.9rem;
+      margin-top:4px;
+    }
+    .summary {
+      width: 320px;
+      flex-shrink:0;
+      background:#fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:25px 20px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      height: fit-content;
+    }
+    .summary h2 {
+      margin:0;
+      font-size:1.4rem;
+      color:#1f2d33;
+    }
+    .line {
+      display:flex;
+      justify-content:space-between;
+      font-weight:600;
+    }
+    .total {
+      font-size:1.5rem;
+      font-weight:700;
+      color: var(--green);
+    }
+    .checkout-btn {
+      background: var(--green);
+      color:#fff;
+      border:none;
+      padding:14px;
+      border-radius:25px;
+      cursor:pointer;
+      font-size:1rem;
+      font-weight:600;
+      transition: filter var(--transition);
+    }
+    .checkout-btn:hover {
+      filter: brightness(1.05);
+    }
+    .checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.checkout-form input,
+.checkout-form textarea {
+  padding: 10px 12px;
+  border: 1px solid #d9e5de;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  width: 100%;
+  font-family: inherit;
+  outline: none;
+}
+.checkout-form button.submit-order {
+  background: var(--green);
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight:600;
+}
+.order-confirmation {
+  background: #e6ffed;
+  border: 1px solid #8cd4a3;
+  padding: 16px;
+  border-radius: 10px;
+  font-weight:600;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+    .empty {
+      padding:50px;
+      background:#fff;
+      border-radius:10px;
+      box-shadow:0 10px 30px rgba(46,139,87,0.08);
+      text-align:center;
+      font-size:1.1rem;
+    }
+    @media (max-width: 900px) {
+      .cart-wrapper { flex-direction: column; }
+      .summary { width:100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Cart</h1>
+
+  <div class="cart-wrapper">
+    <div class="items" aria-label="Cart items">
+      <!-- cart items injected by JS -->
+    </div>
+    <div class="summary" aria-label="Order summary">
+      <h2>Order Summary</h2>
+      <div class="line">
+        <div>Items</div>
+        <div id="item-count">0</div>
+      </div>
+      <div class="line">
+        <div>Subtotal</div>
+        <div id="subtotal">₹0</div>
+      </div>
+      <div class="line">
+        <div>Shipping</div>
+        <div id="shipping">₹49</div>
+      </div>
+      <div class="line total">
+        <div>Total</div>
+        <div id="total">₹0</div>
+      </div>
+    <div id="checkout-area">
+  <button class="checkout-btn" id="checkout">Checkout</button>
+</div>
+
+    </div>
+  </div>
+
+  <template id="empty-template">
+    <div class="empty">
+      Your cart is empty. Browse plants and add to cart! 🌿
+    </div>
+  </template>
+
+  <script>
+    const CART_KEY = 'nursery_cart';
+
+    function getCart() {
+      try {
+        return JSON.parse(localStorage.getItem(CART_KEY)) || [];
+      } catch {
+        return [];
+      }
+    }
+    function saveCart(c) {
+      localStorage.setItem(CART_KEY, JSON.stringify(c));
+    }
+
+    function addOrUpdateCartItem(item) {
+      const cart = getCart();
+      const existing = cart.find(i => i.id === item.id);
+      if (existing) {
+        existing.qty = Math.min(99, existing.qty + (item.qty || 1));
+      } else {
+        cart.push({ ...item, qty: item.qty || 1 });
+      }
+      saveCart(cart);
+    }
+
+    function removeItem(id) {
+      let cart = getCart();
+      cart = cart.filter(i => i.id !== id);
+      saveCart(cart);
+    }
+
+    function changeQty(id, delta) {
+      const cart = getCart();
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty = Math.max(1, item.qty + delta);
+      saveCart(cart);
+    }
+
+    function computeSummary() {
+      const cart = getCart();
+      let subtotal = 0;
+      let count = 0;
+      cart.forEach(i => {
+        subtotal += Number(i.price || 0) * i.qty;
+        count += i.qty;
+      });
+      const shipping = count === 0 ? 0 : 49;
+      const total = subtotal + shipping;
+      return { subtotal, shipping, total, count };
+    }
+
+    function createCartCard(item) {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'cart-card';
+      wrapper.dataset.id = item.id;
+
+      wrapper.innerHTML = `
+        <img src="${item.imageSrc}" alt="${item.name}">
+        <div class="info">
+          <div class="plant-name">${item.name}</div>
+          <div class="price">₹${item.price} each</div>
+          <div class="qty-control">
+            <button class="decrease" aria-label="Decrease quantity">−</button>
+            <span class="qty">${item.qty}</span>
+            <button class="increase" aria-label="Increase quantity">+</button>
+          </div>
+          <div class="subtotal">Subtotal: ₹${(item.price * item.qty).toFixed(0)}</div>
+        </div>
+        <button class="remove-btn" aria-label="Remove item"><i class="fa-solid fa-xmark"></i></button>
+      `;
+
+      // quantity buttons
+      wrapper.querySelector('.increase').addEventListener('click', () => {
+        changeQty(item.id, 1);
+        refreshCart();
+      });
+      wrapper.querySelector('.decrease').addEventListener('click', () => {
+        changeQty(item.id, -1);
+        refreshCart();
+      });
+      // remove
+      wrapper.querySelector('.remove-btn').addEventListener('click', () => {
+        removeItem(item.id);
+        refreshCart();
+      });
+
+      return wrapper;
+    }
+
+    function renderCart() {
+      const container = document.querySelector('.items');
+      const summaryEls = {
+        itemCount: document.getElementById('item-count'),
+        subtotal: document.getElementById('subtotal'),
+        shipping: document.getElementById('shipping'),
+        total: document.getElementById('total'),
+      };
+      const { subtotal, shipping, total, count } = computeSummary();
+      summaryEls.itemCount.textContent = count;
+      summaryEls.subtotal.textContent = `₹${subtotal.toFixed(0)}`;
+      summaryEls.shipping.textContent = `₹${shipping.toFixed(0)}`;
+      summaryEls.total.textContent = `₹${total.toFixed(0)}`;
+
+      container.innerHTML = '';
+      const cart = getCart();
+      if (cart.length === 0) {
+        const tpl = document.getElementById('empty-template');
+        container.appendChild(tpl.content.cloneNode(true));
+        return;
+      }
+
+      cart.forEach(item => {
+        container.appendChild(createCartCard(item));
+      });
+    }
+
+    function refreshCart() {
+      renderCart();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+
+      
+    });
+    function clearCart() {
+  localStorage.removeItem(CART_KEY);
+}
+
+function showOrderConfirmation(total) {
+  const area = document.getElementById('checkout-area');
+  area.innerHTML = `
+    <div class="order-confirmation" aria-live="polite">
+      <i class="fa-solid fa-circle-check" style="color: #2e8b57; font-size:24px;"></i>
+      <div>
+        <div>🎉 Order Confirmed!</div>
+        <div>Your total was: ₹${total.toFixed(0)}</div>
+      </div>
+    </div>
+  `;
+}
+
+function renderCheckoutForm() {
+  const area = document.getElementById('checkout-area');
+  area.innerHTML = `
+    <form id="checkout-form" class="checkout-form" novalidate>
+      <div>
+        <label for="full-name" style="font-size:0.75rem; font-weight:600;">Full Name</label>
+        <input id="full-name" type="text" placeholder="Your name" required>
+      </div>
+      <div>
+        <label for="email" style="font-size:0.75rem; font-weight:600;">Email</label>
+        <input id="email" type="email" placeholder="you@example.com" required>
+      </div>
+      <div>
+        <label for="address" style="font-size:0.75rem; font-weight:600;">Shipping Address</label>
+        <textarea id="address" placeholder="Street, City, PIN" required></textarea>
+      </div>
+      <div>
+        <label for="payment" style="font-size:0.75rem; font-weight:600;">Payment Method</label>
+        <select id="payment" required>
+          <option value="">Select</option>
+          <option value="cod">Cash on Delivery</option>
+          <option value="upi">UPI</option>
+          <option value="card">Card (stub)</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-order">Place Order</button>
+    </form>
+  `;
+
+  document.getElementById('checkout-form').addEventListener('submit', e => {
+    e.preventDefault();
+    const name = document.getElementById('full-name').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const address = document.getElementById('address').value.trim();
+    const payment = document.getElementById('payment').value;
+    if (!name || !email || !address || !payment) {
+      alert('Please fill all fields.');
+      return;
+    }
+    const { total } = computeSummary();
+    clearCart();
+    refreshCart();
+    showOrderConfirmation(total);
+  });
+}
+
+document.getElementById('checkout').addEventListener('click', (e) => {
+  e.preventDefault();
+  const { count } = computeSummary();
+  if (count === 0) {
+    alert('Your cart is empty.');
+  } else {
+    renderCheckoutForm();
+  }
+});
+
+  </script>
+  <script src="cart.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Categories - NurseryNextDoor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+     :root {
+      --green:#2e8b57;
+      --radius:12px;
+      --shadow:0 12px 28px -10px rgba(46,139,87,0.25);
+      --transition:.25s cubic-bezier(.4,.2,.2,1);
+    }
+    *{box-sizing:border-box;}
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: #f4fdf4;
+      margin:0;
+      padding: 30px 20px;
+      color: #2f3e46;
+    }
+    h1 {
+      font-size:2.2rem;
+      margin-bottom:30px;
+      letter-spacing:0.5px;
+    }
+    .categories-section {
+      max-width: 1200px;
+      margin: auto;
+    }
+    .category-block {
+      margin-bottom: 60px;
+    }
+    .category-title {
+      position: relative;
+      font-size: 30px;
+      color: var(--green);
+      margin-bottom: 20px;
+      padding-left: 14px;
+      font-weight:700;
+    }
+    .category-title::before {
+      content:'';
+      position:absolute;
+      left:0;
+      top:4px;
+      width:6px;
+      height:40px;
+      background: linear-gradient(135deg, var(--green), #76c893);
+      border-radius:4px;
+    }
+    .plant-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: flex-start;
+    }
+    .plant-card {
+      position: relative;
+      width: 220px;
+      background: #ffffff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition);
+    }
+    .plant-card:hover {
+      transform: translateY(-4px);
+    }
+    .plant-card img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .plant-info {
+      padding: 14px 12px 8px;
+      flex-grow:1;
+      display: flex;
+      flex-direction: column;
+      gap:6px;
+    }
+    .plant-name {
+      font-weight:600;
+      font-size: 1rem;
+      color: #1f2d33;
+      margin-bottom:4px;
+    }
+    .price-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom:8px;
+    }
+    .price {
+      font-weight:700;
+      font-size: 1.1rem;
+      color: var(--green);
+    }
+    .actions {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      margin-top:auto;
+    }
+    .btn {
+      flex:1;
+      padding: 8px 10px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight:600;
+      transition: background var(--transition);
+      display: flex;
+      align-items:center;
+      justify-content:center;
+      gap:4px;
+    }
+    .add-cart {
+      background: #fff;
+      border: 1px solid var(--green);
+      color: var(--green);
+    }
+    .add-cart:hover {
+      background: var(--green);
+      color:#fff;
+    }
+    .buy-now {
+      background: var(--green);
+      color: #fff;
+    }
+    .buy-now:hover {
+      filter: brightness(1.05);
+    }
+    .badge {
+      background: #ffe8d6;
+      color: #d35400;
+      font-size: 0.6rem;
+      padding: 4px 10px;
+      border-radius: 50px;
+      font-weight:700;
+      display: inline-block;
+    }
+    .wishlist-toggle {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 50%;
+      padding: 8px;
+      cursor: pointer;
+      transition: transform .2s;
+      display: flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .wishlist-toggle.favorited i {
+      color: #e63946;
+    }
+    .wishlist-toggle i {
+      font-size: 16px;
+      color: #888;
+    }
+    .wishlist-toggle:hover {
+      transform: scale(1.1);
+    }
+    @media (max-width: 1024px) {
+      .plant-card { width: 48%; }
+    }
+    @media (max-width: 768px) {
+      .plant-card { width: 100%; }
+      .plant-list { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <section class="categories-section">
+    <h1>Explore Our Plant Categories</h1>
+
+    <!-- LOW LIGHT -->
+    <div class="category-block">
+      <h2 class="category-title">Low-Light Plants</h2>
+      <div class="plant-list">
+        <div class="plant-card" data-name="Snake Plant" data-price="799">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/SnakePlant 1.jpeg" alt="Snake Plant">
+          <div class="plant-info">
+            <div class="plant-name">Snake Plant</div>
+            <div class="price-row">
+              <div class="price">₹799</div>
+              <div class="badge">Best Seller</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="ZZ Plant" data-price="699">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/ZZ Plant.jpeg" alt="ZZ Plant">
+          <div class="plant-info">
+            <div class="plant-name">ZZ Plant</div>
+            <div class="price-row">
+              <div class="price">₹699</div>
+              <div class="badge">New</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Pothos" data-price="499">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Pothos.jpeg" alt="Pothos">
+          <div class="plant-info">
+            <div class="plant-name">Pothos</div>
+            <div class="price-row">
+              <div class="price">₹499</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Cast Iron Plant" data-price="499">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Cast Iron Plant.jpeg" alt="Cast Iron Plant">
+          <div class="plant-info">
+            <div class="plant-name">Cast Iron Plant</div>
+            <div class="price-row">
+              <div class="price">₹499</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Calathea" data-price="499">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Calathea.jpeg" alt="Calathea">
+          <div class="plant-info">
+            <div class="plant-name">Calathea</div>
+            <div class="price-row">
+              <div class="price">₹499</div>
+              <div class="badge">Popular</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AIR PURIFYING -->
+    <div class="category-block">
+      <h2 class="category-title">Air Purifying Plants</h2>
+      <div class="plant-list">
+        <div class="plant-card" data-name="Peace Lily" data-price="899">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/peace lily.jpeg" alt="Peace Lily">
+          <div class="plant-info">
+            <div class="plant-name">Peace Lily</div>
+            <div class="price-row">
+              <div class="price">₹899</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Spider Plant" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/spider plant.jpeg" alt="Spider Plant">
+          <div class="plant-info">
+            <div class="plant-name">Spider Plant</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+              <div class="badge">Popular</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Areca Palm" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Areca Palm.jpeg" alt="Areca Palm">
+          <div class="plant-info">
+            <div class="plant-name">Areca Palm</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Rubber Plant" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Rubberplant.jpeg" alt="Rubber Plant">
+          <div class="plant-info">
+            <div class="plant-name">Rubber Plant</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Bamboo Plant" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Lucky Bamboo (Dracaena sanderiana)_.jpeg" alt="Bamboo Plant">
+          <div class="plant-info">
+            <div class="plant-name">Bamboo Plant</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+              <div class="badge">Bestseller</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FLOWERING -->
+    <div class="category-block">
+      <h2 class="category-title">Flowering Plants</h2>
+      <div class="plant-list">
+        <div class="plant-card" data-name="Anthurium" data-price="899">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Anthurium.jpeg" alt="Anthurium">
+          <div class="plant-info">
+            <div class="plant-name">Anthurium</div>
+            <div class="price-row">
+              <div class="price">₹899</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="African Voilets" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/African_voilets.jpeg" alt="African Voilets">
+          <div class="plant-info">
+            <div class="plant-name">African Voilets</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+              <div class="badge">New</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Peace Lily" data-price="899">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/peace lily.jpeg" alt="Peace Lily">
+          <div class="plant-info">
+            <div class="plant-name">Peace Lily</div>
+            <div class="price-row">
+              <div class="price">₹899</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Lavender" data-price="899">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Lavender.jpeg" alt="Lavender">
+          <div class="plant-info">
+            <div class="plant-name">Lavender</div>
+            <div class="price-row">
+              <div class="price">₹899</div>
+              <div class="badge">Popular</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Jasmine" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/jasmine.jpeg" alt="Jasmine">
+          <div class="plant-info">
+            <div class="plant-name">Jasmine</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCULENTS -->
+    <div class="category-block">
+      <h2 class="category-title">SUCCULENTS</h2>
+      <div class="plant-list">
+        <div class="plant-card" data-name="Aloe Vera" data-price="899">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/aloe vera.jpeg" alt="Aloe Vera">
+          <div class="plant-info">
+            <div class="plant-name">Aloe Vera</div>
+            <div class="price-row">
+              <div class="price">₹899</div>
+              <div class="badge">Popular</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Jade Plant" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/jade.jpeg" alt="Jade Plant">
+          <div class="plant-info">
+            <div class="plant-name">Jade Plant</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Haworthia" data-price="699">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/haworthia.jpeg" alt="Haworthia">
+          <div class="plant-info">
+            <div class="plant-name">Haworthia</div>
+            <div class="price-row">
+              <div class="price">₹699</div>
+              <div class="badge">New</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Agave Plant" data-price="499">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Agave.jpeg" alt="Agave Plant">
+          <div class="plant-info">
+            <div class="plant-name">Agave Plant</div>
+            <div class="price-row">
+              <div class="price">₹499</div>
+              <div class="badge">Popular</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Cactus" data-price="549">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Cactus.jpeg" alt="Cactus">
+          <div class="plant-info">
+            <div class="plant-name">Cactus</div>
+            <div class="price-row">
+              <div class="price">₹549</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- HANGING PLANTS -->
+    <div class="category-block">
+      <h2 class="category-title">HANGING PLANTS</h2>
+      <div class="plant-list">
+        <div class="plant-card" data-name="English-Ivy" data-price="899">
+          <div class="wishlist-toggle">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/english ivy.jpeg" alt="English-Ivy">
+          <div class="plant-info">
+            <div class="plant-name">English-Ivy</div>
+            <div class="price-row">
+              <div class="price">₹899</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Boston Fern" data-price="699">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/boston fern.jpeg" alt="Boston Fern">
+          <div class="plant-info">
+            <div class="plant-name">Boston Fern</div>
+            <div class="price-row">
+              <div class="price">₹699</div>
+              <div class="badge">New</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="String of pearls" data-price="349">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/string of pearls.jpeg" alt="String of pearls">
+          <div class="plant-info">
+            <div class="plant-name">String of pearls</div>
+            <div class="price-row">
+              <div class="price">₹349</div>
+              <div class="badge">Popular</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Creeping Jenny" data-price="349">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Creeping Jenny.jpeg" alt="Creeping Jenny">
+          <div class="plant-info">
+            <div class="plant-name">Creeping Jenny</div>
+            <div class="price-row">
+              <div class="price">₹499</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+        <div class="plant-card" data-name="Burros Tail" data-price="249">
+          <div class="wishlist-toggle" aria-label="Wishlist">
+            <i class="fa-regular fa-heart"></i>
+          </div>
+          <img src="images/Burros Tail.jpeg" alt="Burros Tail">
+          <div class="plant-info">
+            <div class="plant-name">Burros Tail</div>
+            <div class="price-row">
+              <div class="price">₹249</div>
+            </div>
+            <div class="actions">
+              <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add</button>
+              <button class="btn buy-now">Buy Now</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <script>
+    // unified cart + wishlist logic with guards to avoid duplicate alerts
+    const CART_KEY = 'nursery_cart';
+    const WISHLIST_KEY = 'nursery_wishlist';
+
+    // cart helpers
+    function getCart() {
+      try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch { return []; }
+    }
+    function saveCart(c) { localStorage.setItem(CART_KEY, JSON.stringify(c)); }
+    function addOrUpdateCartItem(item) {
+      const cart = getCart();
+      const existing = cart.find(i => i.id === item.id);
+      if (existing) {
+        existing.qty = Math.min(99, existing.qty + 1);
+      } else {
+        cart.push({ ...item, qty: 1 });
+      }
+      saveCart(cart);
+    }
+
+    // wishlist helpers
+    function getWishlist() {
+      try { return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || []; } catch { return []; }
+    }
+    function saveWishlist(list) { localStorage.setItem(WISHLIST_KEY, JSON.stringify(list)); }
+    function isInWishlist(id) {
+      return getWishlist().some(i => i.id === id);
+    }
+    function addToWishlist(item) {
+      const list = getWishlist();
+      if (!list.some(i => i.id === item.id)) {
+        list.push(item);
+        saveWishlist(list);
+      }
+    }
+    function removeFromWishlist(id) {
+      let list = getWishlist();
+      list = list.filter(i => i.id !== id);
+      saveWishlist(list);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('.plant-card').forEach(card => {
+        const rawName = card.dataset.name || '';
+        const id = rawName.trim().toLowerCase().replace(/\s+/g, '-');
+        const price = card.dataset.price || '0';
+        const img = card.querySelector('img')?.getAttribute('src') || '';
+        card.dataset.id = id;
+
+        // Add to cart
+        const addBtn = card.querySelector('.add-cart');
+        if (addBtn) {
+          addBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            if (addBtn.dataset.busy) return;
+            addBtn.dataset.busy = '1';
+            addOrUpdateCartItem({ id, name: rawName, price, imageSrc: img });
+            alert(`${rawName} added to cart.`);
+            setTimeout(() => { delete addBtn.dataset.busy; }, 150);
+          });
+        }
+
+        // Buy now
+        const buyBtn = card.querySelector('.buy-now');
+        if (buyBtn) {
+          buyBtn.addEventListener('click', e => {
+            e.stopPropagation();
+            if (buyBtn.dataset.busy) return;
+            buyBtn.dataset.busy = '1';
+            addOrUpdateCartItem({ id, name: rawName, price, imageSrc: img });
+            alert(`Proceed to buy ${rawName}.`);
+            setTimeout(() => { delete buyBtn.dataset.busy; }, 150);
+          });
+        }
+
+        // Wishlist toggle
+        const heartWrapper = card.querySelector('.wishlist-toggle');
+        const heartIcon = heartWrapper?.querySelector('i');
+        if (heartWrapper) {
+          // reflect existing
+          if (isInWishlist(id)) {
+            heartWrapper.classList.add('favorited');
+            if (heartIcon) {
+              heartIcon.classList.remove('fa-regular');
+              heartIcon.classList.add('fa-solid');
+            }
+          }
+          heartWrapper.addEventListener('click', () => {
+            const item = { id, name: rawName, price, imageSrc: img };
+            if (isInWishlist(id)) {
+              removeFromWishlist(id);
+              heartWrapper.classList.remove('favorited');
+              if (heartIcon) {
+                heartIcon.classList.remove('fa-solid');
+                heartIcon.classList.add('fa-regular');
+              }
+            } else {
+              addToWishlist(item);
+              heartWrapper.classList.add('favorited');
+              if (heartIcon) {
+                heartIcon.classList.remove('fa-regular');
+                heartIcon.classList.add('fa-solid');
+              }
+            }
+          });
+        }
+      });
+    });
+  </script>
+</body>
+</html>

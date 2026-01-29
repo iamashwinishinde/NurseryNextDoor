@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us - NurseryNextDoor</title>
+  <link rel="stylesheet" href="style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:#2e8b57;
+      --radius:12px;
+      --shadow:0 16px 40px -10px rgba(46,139,87,0.2);
+      --bg:#f9fdf9;
+    }
+    *{box-sizing:border-box;}
+    body {
+      margin:0;
+      font-family:'Montserrat',sans-serif;
+      background: var(--bg);
+      color:#2f3e46;
+      padding:30px 16px;
+    }
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap:40px;
+      padding-bottom:40px;
+    }
+    h1 {
+      text-align:center;
+      color: var(--green);
+      margin-bottom:6px;
+      font-size:2.2rem;
+    }
+    .lead {
+      text-align:center;
+      margin:0 0 30px;
+      font-size:1rem;
+    }
+    .card {
+      background:#fff;
+      border-radius: var(--radius);
+      padding:30px 24px;
+      box-shadow: var(--shadow);
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+    .card h2 {
+      margin:0;
+      font-size:1.6rem;
+      color:#1f2d33;
+    }
+    .field {
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+    }
+    .field label {
+      font-size:0.75rem;
+      font-weight:600;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .field input, .field textarea {
+      padding:12px 14px;
+      border:1px solid #d9e5de;
+      border-radius:8px;
+      font-size:1rem;
+      outline:none;
+      resize: vertical;
+      font-family:inherit;
+    }
+    .field textarea { min-height:140px; }
+    .btn {
+      background: var(--green);
+      color:#fff;
+      border:none;
+      padding:14px 22px;
+      border-radius:25px;
+      cursor:pointer;
+      font-size:1rem;
+      font-weight:600;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      transition:filter .2s;
+    }
+    .btn:hover { filter:brightness(1.05); }
+    .info {
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+    }
+    .info-block {
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .info-icon {
+      background: rgba(46,139,87,0.1);
+      width:42px;
+      height:42px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: var(--green);
+      font-size:18px;
+      flex-shrink:0;
+    }
+    .info-text h4 {
+      margin:0 0 4px;
+      font-size:1rem;
+    }
+    .info-text p {
+      margin:0;
+      font-size:0.9rem;
+      line-height:1.3;
+    }
+    .map {
+      border-radius:12px;
+      overflow:hidden;
+      height:260px;
+      background:#e8f5ec;
+      position:relative;
+    }
+    .map-placeholder {
+      position:absolute;
+      inset:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:6px;
+      color:#6b8f84;
+      font-size:0.9rem;
+    }
+    .alert {
+      padding:14px 18px;
+      border-radius:8px;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      font-size:0.95rem;
+    }
+    .success { background:#d4edda; color:#235a37; border:1px solid #b1dfc5; }
+    .error { background:#ffe3e3; color:#7a2f2f; border:1px solid #f5c2c7; }
+
+    @media (max-width: 1024px) {
+      .container { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Contact Us</h1>
+  <p class="lead">Questions, feedback or plant help? We’re here for you. Fill the form or reach us via the contact info.</p>
+
+  <div class="container">
+    <!-- Form -->
+    <div class="card">
+      <h2>Send a Message</h2>
+      <div id="feedback"></div>
+      <form id="contact-form" novalidate>
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" placeholder="Your full name" required />
+        </div>
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="subject">Subject</label>
+          <input id="subject" name="subject" type="text" placeholder="Subject" required />
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
+        </div>
+        <button type="submit" class="btn"><i class="fa-solid fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+
+    <!-- Info + Map -->
+    <div class="card">
+      <h2>Get in Touch</h2>
+      <div class="info">
+        <div class="info-block">
+          <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="info-text">
+            <h4>Address</h4>
+            <p>123 Green Lane, Pune, Maharashtra, India</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-text">
+            <h4>Email</h4>
+            <p>support@nurserynextdoor.com</p>
+          </div>
+        </div>
+        <div class="info-block">
+          <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="info-text">
+            <h4>Phone</h4>
+            <p>+91 95555 44444</p>
+          </div>
+        </div>
+      </div>
+      <div>
+        <h4 style="margin-top:10px;">Find Us</h4>
+        <div class="map" aria-label="Map">
+          <div class="map-placeholder">
+            <i class="fa-solid fa-map-location-dot" style="font-size:28px;"></i>
+            <div>Map placeholder</div>
+            <div style="font-size:0.7rem;">(Google Maps / OpenStreetMap)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const FORM_KEY = 'nursery_contact_submissions';
+    function getSubmissions() {
+      try { return JSON.parse(localStorage.getItem(FORM_KEY)) || []; } catch { return []; }
+    }
+    function saveSubmissions(arr) {
+      localStorage.setItem(FORM_KEY, JSON.stringify(arr));
+    }
+
+    function showFeedback(message, type='success') {
+      const container = document.getElementById('feedback');
+      container.innerHTML = `<div class="alert ${type === 'success' ? 'success' : 'error'}">
+        <i class="fa-solid ${type === 'success' ? 'fa-circle-check' : 'fa-triangle-exclamation'}"></i>
+        <div>${message}</div>
+      </div>`;
+      setTimeout(() => container.innerHTML = '', 5000);
+    }
+
+    document.getElementById('contact-form').addEventListener('submit', e => {
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      if (!name || !email || !subject || !message) {
+        showFeedback('Please fill out all fields.', 'error');
+        return;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        showFeedback('Please enter a valid email.', 'error');
+        return;
+      }
+
+      const submission = {
+        id: Date.now().toString(36),
+        name, email, subject, message,
+        submittedAt: new Date().toISOString()
+      };
+      const existing = getSubmissions();
+      existing.push(submission);
+      saveSubmissions(existing);
+      showFeedback('Thank you! Your message has been received.');  
+      e.target.reset();
+    });
+  </script>
+</body>
+</html>

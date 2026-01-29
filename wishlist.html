@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Wishlist - NurseryNextDoor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --green: #2e8b57;
+      --light-green: #f4fdf4;
+      --radius: 12px;
+      --shadow: 0 12px 28px -10px rgba(46,139,87,0.25);
+      --transition: 0.25s cubic-bezier(.4,.2,.2,1);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--light-green);
+      margin: 0;
+      padding: 30px 20px;
+      color: #2f3e46;
+    }
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      text-align: center;
+      color: var(--green);
+    }
+    .wishlist-container {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      min-height: 200px;
+    }
+    .wishlist-card {
+      width: 240px;
+      background: #fff;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition);
+    }
+    .wishlist-card:hover {
+      transform: translateY(-4px);
+    }
+    .wishlist-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+    .wishlist-info {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      flex-grow: 1;
+    }
+    .plant-name {
+      font-weight: 600;
+      font-size: 1rem;
+      color: #1f2d33;
+    }
+    .price {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--green);
+    }
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+    }
+    .btn {
+      flex: 1;
+      padding: 8px 10px;
+      border-radius: 20px;
+      border: none;
+      cursor: pointer;
+      font-size: 0.8rem;
+      font-weight: 600;
+      transition: background var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .add-cart {
+      background: var(--green);
+      color: #fff;
+    }
+    .add-cart:hover {
+      filter: brightness(1.05);
+    }
+    .remove {
+      background: #fff;
+      border: 1px solid var(--green);
+      color: var(--green);
+    }
+    .remove:hover {
+      background: var(--green);
+      color: #fff;
+    }
+    .empty {
+      width: 100%;
+      text-align: center;
+      font-size: 1.1rem;
+      padding: 60px 10px;
+      background: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 8px 24px rgba(46,139,87,0.08);
+    }
+    @media (max-width: 768px) {
+      .wishlist-card { width: 100%; max-width: 340px; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>My Wishlist</h1>
+  
+  <div class="wishlist-container" aria-label="Wishlist items">
+    <!-- Filled by JS -->
+  </div>
+
+  <template id="empty-template">
+    <div class="empty">
+      Your wishlist is empty. Browse plants and add favorites! 🌱
+    </div>
+  </template>
+<script>
+  // wishlist + cart integration
+  const WISHLIST_KEY = 'nursery_wishlist';
+  const CART_KEY = 'nursery_cart';
+
+  // wishlist helpers
+  function getWishlist() {
+    try { return JSON.parse(localStorage.getItem(WISHLIST_KEY)) || []; }
+    catch { return []; }
+  }
+  function saveWishlist(list) {
+    localStorage.setItem(WISHLIST_KEY, JSON.stringify(list));
+  }
+  function removeFromWishlist(id) {
+    let list = getWishlist();
+    list = list.filter(i => i.id !== id);
+    saveWishlist(list);
+  }
+
+  // cart helpers
+  function getCart() {
+    try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; }
+    catch { return []; }
+  }
+  function saveCart(c) {
+    localStorage.setItem(CART_KEY, JSON.stringify(c));
+  }
+  function addOrUpdateCartItem(item) {
+    const cart = getCart();
+    const existing = cart.find(i => i.id === item.id);
+    if (existing) {
+      existing.qty = Math.min(99, existing.qty + 1);
+    } else {
+      cart.push({ ...item, qty: 1 });
+    }
+    saveCart(cart);
+  }
+
+  // render wishlist card
+  function createWishlistCard(item) {
+    const wrapper = document.createElement('div');
+    wrapper.className = 'wishlist-card';
+    wrapper.dataset.name = item.name;
+    wrapper.dataset.price = item.price;
+    wrapper.dataset.id = item.id;
+
+    wrapper.innerHTML = `
+      <img src="${item.imageSrc}" alt="${item.name}">
+      <div class="wishlist-info">
+        <div class="plant-name">${item.name}</div>
+        <div class="price">₹${item.price}</div>
+        <div class="actions">
+          <button class="btn add-cart"><i class="fa-solid fa-cart-plus"></i> Add to Cart</button>
+          <button class="btn remove"><i class="fa-solid fa-trash"></i> Remove</button>
+        </div>
+      </div>
+    `;
+
+    // Add to cart: persists into nursery_cart
+    wrapper.querySelector('.add-cart').addEventListener('click', () => {
+      const itemForCart = {
+        id: item.id,
+        name: item.name,
+        price: item.price,
+        imageSrc: item.imageSrc
+      };
+      addOrUpdateCartItem(itemForCart);
+      alert(`${item.name} has been added to your cart!`);
+    });
+
+    // Remove from wishlist
+    wrapper.querySelector('.remove').addEventListener('click', () => {
+      removeFromWishlist(item.id);
+      wrapper.remove();
+      maybeShowEmptyMessage();
+    });
+
+    return wrapper;
+  }
+
+  function maybeShowEmptyMessage() {
+    const container = document.querySelector('.wishlist-container');
+    if (!container) return;
+    if (getWishlist().length === 0) {
+      container.innerHTML = '';
+      const tpl = document.getElementById('empty-template');
+      container.appendChild(tpl.content.cloneNode(true));
+    }
+  }
+
+  function renderWishlist() {
+    const container = document.querySelector('.wishlist-container');
+    if (!container) return;
+    const list = getWishlist();
+    container.innerHTML = '';
+    if (list.length === 0) {
+      maybeShowEmptyMessage();
+      return;
+    }
+    list.forEach(item => {
+      container.appendChild(createWishlistCard(item));
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    renderWishlist();
+  });
+</script>
+
+
+</body>
+</html>
